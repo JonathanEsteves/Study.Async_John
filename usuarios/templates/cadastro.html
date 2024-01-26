@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block 'cabecalho' %}
-<link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet" />
+<link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
 {% endblock %} 
 {% block 'conteudo' %}
 
@@ -35,6 +35,13 @@
                         </div>
                         <br>
                         <h3>Cadastre-se</h3>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <section class="alert {{message.tags}}">
+                                {{message}}
+                            </section>
+                        {% endfor %}
+                    {% endif %}
                         <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %} 
                             <label>Username</label>
                             <input type="text" class="input-form" name="username" id="">
